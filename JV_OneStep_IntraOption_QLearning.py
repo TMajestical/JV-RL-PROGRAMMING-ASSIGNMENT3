@@ -578,7 +578,12 @@ class IntraOption_Qlearning:
                         state_q_vals = agent.env.unwrapped.encode(i,j,passenger_loc,destination)
                         Q_viz[i,j] = agent.Q[state_q_vals]
 
-                message = "Q-Values Heatmap when Passenger at "+loc_label_dict[passenger_loc]+" Destination at "+loc_label_dict[destination]+"."
+                if self.non_primitive_options == 4:
+                    options_type = "Standard Options\n"
+                else:
+                    options_type = "Custom Options\n"
+
+                message = "IntraOption Q learning With " + options_type + "Q-Values Heatmap when Passenger at "+loc_label_dict[passenger_loc]+" Destination at "+loc_label_dict[destination]+"."
                 plot_name = str(plot_id)
                 
                 self.plot_Q(Q_viz,message,plot_name,self.results_dir)
